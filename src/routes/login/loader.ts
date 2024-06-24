@@ -3,7 +3,7 @@ import { LS, LSKeys } from '../../core/local-store';
 
 export const loginLoader = async () => {
   if (LS.getItem(LSKeys.AuthToken, '')) {
-    return redirect('/ducky/admin');
+    return redirect('/admin');
   }
   return null;
 };

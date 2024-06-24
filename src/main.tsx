@@ -17,18 +17,13 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: 'login',
-        action: loginAction,
-        loader: loginLoader,
-        Component: LoginPage,
-      },
-      {
-        path: 'ducky/admin',
-        loader: protectedLoader,
-      },
-    ],
+    loader: protectedLoader,
+  },
+  {
+    path: '/login',
+    action: loginAction,
+    loader: loginLoader,
+    Component: LoginPage,
   },
   {
     path: '/logout',

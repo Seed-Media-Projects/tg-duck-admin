@@ -1,18 +1,56 @@
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material';
+import PlusOneIcon from '@mui/icons-material/PlusOne';
+import SettingsIcon from '@mui/icons-material/Settings';
+import StarsIcon from '@mui/icons-material/Stars';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import TaskIcon from '@mui/icons-material/Task';
+import UpgradeIcon from '@mui/icons-material/Upgrade';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+import {
+  AppBar,
+  Box,
+  Button,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+} from '@mui/material';
 import { useUnit } from 'effector-react';
+import { useState } from 'react';
 import { Outlet, useFetcher } from 'react-router-dom';
 import { $token } from '../core/login/store';
+
 export const Root = () => {
+  const [open, setOpen] = useState(false);
   const hasToken = !!useUnit($token);
   const fetcher = useFetcher();
+
+  const openMenu = () => {
+    setOpen(true);
+  };
+  const closeMenu = () => {
+    setOpen(false);
+  };
 
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+            <IconButton
+              onClick={hasToken ? openMenu : undefined}
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
               <MenuIcon />
             </IconButton>
             {hasToken && (
@@ -24,6 +62,92 @@ export const Root = () => {
             )}
           </Toolbar>
         </AppBar>
+        <Drawer open={open} onClose={closeMenu}>
+          <Box sx={{ width: 250 }} role="presentation" onClick={closeMenu}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <ManageAccountsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Пользователи" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SettingsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Конфиг" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <VerifiedUserIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Ачивки" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <TaskIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Задачи" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <StarsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Special" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <StorefrontIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Маркет" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <PlusOneIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Апгрейд" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <UpgradeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Boost" />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <VideogameAssetIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Crash game" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Box>
+        </Drawer>
       </Box>
       <Box sx={{ padding: 2 }}>
         <Outlet />
