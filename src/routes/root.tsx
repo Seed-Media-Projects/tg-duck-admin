@@ -14,6 +14,7 @@ import {
   Button,
   Drawer,
   IconButton,
+  Link,
   List,
   ListItem,
   ListItemButton,
@@ -65,86 +66,104 @@ export const Root = () => {
         <Drawer open={open} onClose={closeMenu}>
           <Box sx={{ width: 250 }} role="presentation" onClick={closeMenu}>
             <List>
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <ManageAccountsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Пользователи" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/users" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <ManageAccountsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Пользователи" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <SettingsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Конфиг" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/config" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <SettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Конфиг" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <VerifiedUserIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Ачивки" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/achievements" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <VerifiedUserIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Ачивки" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <TaskIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Задачи" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/tasks" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <TaskIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Задачи" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <StarsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Special" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/specials" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <StarsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Special" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <StorefrontIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Маркет" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/markets" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <StorefrontIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Маркет" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <PlusOneIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Апгрейд" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/upgrades" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <PlusOneIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Апгрейд" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <UpgradeIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Boost" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/boosts" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <UpgradeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Boost" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
 
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <VideogameAssetIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Crash game" />
-                </ListItemButton>
-              </ListItem>
+              <Link href="/crash-game" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <VideogameAssetIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Crash game" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
             </List>
           </Box>
         </Drawer>
