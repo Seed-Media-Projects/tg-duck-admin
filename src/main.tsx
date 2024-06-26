@@ -2,7 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { StrictMode } from 'react';
 import 'react-base-table/styles.css';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
 import { signout } from './core/login/signout';
 import { ErrorPage } from './error-page';
@@ -25,6 +25,7 @@ import { EditUserPage } from './routes/users/edit/UserEditPage';
 import { UserPage } from './routes/users/edit/UserPage';
 import { usersLoader } from './routes/users/loader';
 import { UsersPage } from './routes/users/UsersPage';
+import { ErrorBoundary } from './ui/error-bound';
 import { theme } from './ui/theme';
 
 const router = createBrowserRouter([
@@ -88,16 +89,13 @@ const router = createBrowserRouter([
   },
 ]);
 
-// Render the app
-const rootElement = document.getElementById('root')!;
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(
-    <StrictMode>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <ErrorBoundary>
         <RouterProvider router={router} />
-      </ThemeProvider>
-    </StrictMode>,
-  );
-}
+      </ErrorBoundary>
+    </ThemeProvider>
+  </StrictMode>,
+);
