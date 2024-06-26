@@ -1,6 +1,6 @@
-import { getUsersListFX } from '../../core/users';
+import { initGetUsersListFX } from '../../core/users';
 
 export const usersLoader = async () => {
-  const users = await getUsersListFX(0);
+  const users = await initGetUsersListFX();
   return { users };
 };

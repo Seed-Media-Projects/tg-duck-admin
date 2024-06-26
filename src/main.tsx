@@ -11,8 +11,12 @@ import { loginAction } from './routes/login/action';
 import { loginLoader } from './routes/login/loader';
 import { LoginPage } from './routes/login/page';
 import { Root } from './routes/root';
-import { UsersPage } from './routes/users/UsersPage';
+import { updateUserAction } from './routes/users/edit/action';
+import { userLoader } from './routes/users/edit/loader';
+import { EditUserPage } from './routes/users/edit/UserEditPage';
+import { UserPage } from './routes/users/edit/UserPage';
 import { usersLoader } from './routes/users/loader';
+import { UsersPage } from './routes/users/UsersPage';
 import { theme } from './ui/theme';
 
 const router = createBrowserRouter([
@@ -26,6 +30,17 @@ const router = createBrowserRouter([
         path: 'users',
         loader: usersLoader,
         Component: UsersPage,
+      },
+      {
+        path: 'users/:userId',
+        loader: userLoader,
+        Component: UserPage,
+      },
+      {
+        path: 'users/:userId/edit',
+        loader: userLoader,
+        action: updateUserAction,
+        Component: EditUserPage,
       },
     ],
   },

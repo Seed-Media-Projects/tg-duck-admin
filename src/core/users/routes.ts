@@ -1,4 +1,4 @@
 export const userRoutes = {
-  edit: (id: number) => `/users/edit/${id}`,
+  detail: (id: number) => `/users/${id}`,
   list: '/users',
 };

@@ -7,7 +7,7 @@ import { avatarNameLinkColumn, typographyColumn, typographyColumnToKey } from '.
 export const tableUsersConfig: ColumnShape<UserListItem>[] = [
   {
     title: 'Name',
-    ...avatarNameLinkColumn({ link: id => userRoutes.edit(id) }),
+    ...avatarNameLinkColumn({ link: id => userRoutes.detail(id) }),
   },
   {
     title: 'Max referrals',
@@ -65,8 +65,8 @@ export const tableUsersConfig: ColumnShape<UserListItem>[] = [
           options={[
             {
               icon: EditIcon,
-              name: 'Edit',
-              link: userRoutes.edit(rowData.id),
+              name: 'Detail',
+              link: userRoutes.detail(rowData.id),
             },
           ]}
         />
