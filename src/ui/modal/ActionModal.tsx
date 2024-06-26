@@ -32,7 +32,7 @@ export const ActionModal = ({ loading, onClose, onConfirm, open, subtitle, title
           {subtitle}
         </Typography>
         <Box display="flex" justifyContent="center" mt={2} gap={2}>
-          <Button variant="contained" disabled={loading} color="secondary">
+          <Button onClick={onClose} variant="contained" disabled={loading} color="secondary">
             Cancel
           </Button>
           <Button onClick={onConfirm} disabled={loading} variant="contained" color="error">

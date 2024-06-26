@@ -9,6 +9,7 @@ import UpgradeIcon from '@mui/icons-material/Upgrade';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import {
+  Alert,
   AppBar,
   Box,
   Button,
@@ -20,16 +21,19 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Snackbar,
   Toolbar,
 } from '@mui/material';
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
 import { Outlet, useFetcher } from 'react-router-dom';
 import { $token } from '../core/login/store';
+import { $snacks, closeSnack } from '../core/snacks/store';
 
 export const Root = () => {
   const [open, setOpen] = useState(false);
   const hasToken = !!useUnit($token);
+  const snacksStore = useUnit($snacks);
   const fetcher = useFetcher();
 
   const openMenu = () => {
@@ -171,6 +175,11 @@ export const Root = () => {
       <Box sx={{ padding: 2 }}>
         <Outlet />
       </Box>
+      <Snackbar open={snacksStore.open} autoHideDuration={6000} onClose={() => closeSnack()} message={snacksStore.message}>
+        <Alert onClose={() => closeSnack()} severity={snacksStore.severity} variant="filled" sx={{ width: '100%' }}>
+          {snacksStore.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

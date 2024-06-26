@@ -19,6 +19,8 @@ export const LoginPage = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        maxWidth: 500,
+        margin: 'auto',
       }}
     >
       <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>

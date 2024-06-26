@@ -21,6 +21,8 @@ export const EditUserPage = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        maxWidth: 500,
+        margin: 'auto',
       }}
     >
       <Form method="post">
