@@ -1,14 +1,11 @@
+import { BaseFileInfo } from '../files';
+
 export type ConfigData = {
   id: number;
   techProblem: boolean;
   notification: boolean;
   notificationText: string;
-  file: {
-    id: number;
-    fileUrl: string;
-    name: string | null;
-    deleted: string | null;
-  } | null;
+  file: BaseFileInfo | null;
   created: string;
   deleted: string | null;
 };

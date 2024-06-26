@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
 import { signout } from './core/login/signout';
 import { ErrorPage } from './error-page';
+import { achievementsLoader } from './routes/achievements/loader';
+import { AchievementsPage } from './routes/achievements/page';
 import { protectedLoader } from './routes/admin/loader';
 import { createConfigAction } from './routes/config/create/action';
 import { ConfigCreatePage } from './routes/config/create/ConfigCreatePage';
@@ -63,6 +65,11 @@ const router = createBrowserRouter([
         loader: configLoader,
         action: updateConfigAction,
         Component: ConfigEditPage,
+      },
+      {
+        path: 'achievements',
+        loader: achievementsLoader,
+        Component: AchievementsPage,
       },
     ],
   },
