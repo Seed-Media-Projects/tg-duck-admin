@@ -73,7 +73,7 @@ const Actions = ({ achievement }: { achievement: AchievementItem }) => {
               });
             }}
             open={open}
-            title="Delete config."
+            title={`Delete achievement: ${achievement.name}`}
             subtitle="Are you sure?"
           />
         </>
