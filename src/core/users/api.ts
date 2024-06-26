@@ -29,3 +29,6 @@ export const getUserDataFX = createEffect(async (userId: number) => {
 export const updateUserDataFX = createEffect(async ({ id, ...payload }: UpdateUserData) => {
   await AX.put(`/admin/api/user/${id}`, payload);
 });
+export const resetUserDataFX = createEffect(async (userId: number) => {
+  await AX.delete(`/admin/api/user/${userId}`);
+});
