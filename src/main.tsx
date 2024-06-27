@@ -51,6 +51,18 @@ const router = createBrowserRouter([
         path: 'achievements/create',
         lazy: () => import('@routes/achievements/create'),
       },
+      {
+        path: 'tasks',
+        lazy: () => import('@routes/tasks'),
+      },
+      {
+        path: 'tasks/:taskId/edit',
+        lazy: () => import('@routes/tasks/edit'),
+      },
+      {
+        path: 'tasks/create',
+        lazy: () => import('@routes/tasks/create'),
+      },
     ],
   },
   {
