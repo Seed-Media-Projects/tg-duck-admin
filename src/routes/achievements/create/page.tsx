@@ -1,12 +1,13 @@
 import { AchievementItem } from '@core/achievements';
 import { FileInfo, useUploader } from '@core/files';
-import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, TextField } from '@mui/material';
 import { CircularProgressWithLabel } from '@ui/ProgressWithLabel';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Form, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
 
-export const EditAchievementPage = () => {
-  const { achievement } = useLoaderData() as { achievement: AchievementItem | null };
+export const CreateAchievementPage = () => {
+  const { achievements } = useLoaderData() as { achievements: AchievementItem[] };
+
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
   const uploader = useUploader({ onFinishUpload: setFileInfo });
 
@@ -14,20 +15,6 @@ export const EditAchievementPage = () => {
   const isLoading = navigation.formData?.get('name') != null;
 
   const actionData = useActionData() as { error: string } | undefined;
-
-  useEffect(() => {
-    if (achievement?.file) {
-      setFileInfo({
-        id: achievement.file.id,
-        url: achievement.file.fileUrl,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!achievement) {
-    return <Typography>Achievement not found</Typography>;
-  }
 
   return (
     <Box
@@ -66,35 +53,19 @@ export const EditAchievementPage = () => {
             />
           ) : null}
         </Box>
-        <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus defaultValue={achievement.name} />
-        <TextField margin="normal" required fullWidth label="Type" name="type" defaultValue={achievement.type} />
-        <TextField margin="normal" fullWidth label="Description" name="description" defaultValue={achievement.description} />
-        <TextField
-          margin="normal"
-          fullWidth
-          required
-          label="Reward experience"
-          name="rewardExperience"
-          defaultValue={achievement.rewardExperience}
-          type="number"
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          label="Reward coins"
-          name="rewardCoins"
-          defaultValue={achievement.rewardCoins}
-          type="number"
-        />
+        <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus />
+        <TextField margin="normal" required fullWidth label="Type" name="type" />
+        <TextField margin="normal" fullWidth label="Description" name="description" />
+        <TextField margin="normal" fullWidth required label="Reward experience" name="rewardExperience" type="number" />
+        <TextField margin="normal" required fullWidth label="Reward coins" name="rewardCoins" type="number" />
         <TextField
           margin="normal"
           required
           fullWidth
           label="Position"
           name="position"
-          defaultValue={achievement.position}
           type="number"
+          defaultValue={achievements.length + 1}
         />
 
         <Button type="submit" variant="contained" disabled={isLoading} sx={{ mt: 3, mb: 2 }}>

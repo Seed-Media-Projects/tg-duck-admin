@@ -1,34 +1,37 @@
+import { signout } from '@core/login/signout';
 import { ThemeProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
+import { createAchievementAiection } from '@routes/achievements/create/action';
+import { CreateAchievementPage } from '@routes/achievements/create/page';
+import { updateAchievementAiection } from '@routes/achievements/edit/action';
+import { achievementLoader } from '@routes/achievements/edit/loader';
+import { EditAchievementPage } from '@routes/achievements/edit/page';
+import { achievementsLoader } from '@routes/achievements/loader';
+import { AchievementsPage } from '@routes/achievements/page';
+import { protectedLoader } from '@routes/admin/loader';
+import { ConfigCreatePage } from '@routes/config/create/ConfigCreatePage';
+import { createConfigAction } from '@routes/config/create/action';
+import { ConfigEditPage } from '@routes/config/edit/ConfigEditPage';
+import { updateConfigAction } from '@routes/config/edit/action';
+import { configLoader } from '@routes/config/loader';
+import { ConfigPage } from '@routes/config/page';
+import { loginAction } from '@routes/login/action';
+import { loginLoader } from '@routes/login/loader';
+import { LoginPage } from '@routes/login/page';
+import { Root } from '@routes/root';
+import { UsersPage } from '@routes/users/UsersPage';
+import { EditUserPage } from '@routes/users/edit/UserEditPage';
+import { UserPage } from '@routes/users/edit/UserPage';
+import { updateUserAction } from '@routes/users/edit/action';
+import { userLoader } from '@routes/users/edit/loader';
+import { usersLoader } from '@routes/users/loader';
+import { ErrorBoundary } from '@ui/error-bound';
+import { theme } from '@ui/theme';
 import { StrictMode } from 'react';
 import 'react-base-table/styles.css';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
-import { signout } from './core/login/signout';
 import { ErrorPage } from './error-page';
-import { achievementLoader } from './routes/achievements/edit/loader';
-import { EditAchievementPage } from './routes/achievements/edit/page';
-import { achievementsLoader } from './routes/achievements/loader';
-import { AchievementsPage } from './routes/achievements/page';
-import { protectedLoader } from './routes/admin/loader';
-import { createConfigAction } from './routes/config/create/action';
-import { ConfigCreatePage } from './routes/config/create/ConfigCreatePage';
-import { updateConfigAction } from './routes/config/edit/action';
-import { ConfigEditPage } from './routes/config/edit/ConfigEditPage';
-import { configLoader } from './routes/config/loader';
-import { ConfigPage } from './routes/config/page';
-import { loginAction } from './routes/login/action';
-import { loginLoader } from './routes/login/loader';
-import { LoginPage } from './routes/login/page';
-import { Root } from './routes/root';
-import { updateUserAction } from './routes/users/edit/action';
-import { userLoader } from './routes/users/edit/loader';
-import { EditUserPage } from './routes/users/edit/UserEditPage';
-import { UserPage } from './routes/users/edit/UserPage';
-import { usersLoader } from './routes/users/loader';
-import { UsersPage } from './routes/users/UsersPage';
-import { ErrorBoundary } from './ui/error-bound';
-import { theme } from './ui/theme';
 
 const router = createBrowserRouter([
   {
@@ -77,7 +80,14 @@ const router = createBrowserRouter([
       {
         path: 'achievements/:aId/edit',
         loader: achievementLoader,
+        action: updateAchievementAiection,
         element: <EditAchievementPage />,
+      },
+      {
+        path: 'achievements/create',
+        loader: achievementsLoader,
+        action: createAchievementAiection,
+        element: <CreateAchievementPage />,
       },
     ],
   },

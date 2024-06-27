@@ -10,3 +10,12 @@ export type AchievementItem = {
   position: number;
   file: BaseFileInfo;
 };
+export type SaveAchievement = {
+  fileId: number;
+  name: string;
+  type: string;
+  description: string | null;
+  rewardExperience: number | null;
+  rewardCoins: number | null;
+  position: number;
+};
