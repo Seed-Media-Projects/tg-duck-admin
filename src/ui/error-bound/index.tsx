@@ -1,12 +1,12 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import { Component } from 'react';
 type LocalState = {
   hasError: boolean;
   error: unknown;
 };
 
-export class ErrorBoundary extends React.Component<{ children: React.ReactNode }, LocalState> {
+export class ErrorBoundary extends Component<{ children: React.ReactNode }, LocalState> {
   state: LocalState = { hasError: false, error: '' };
 
   static getDerivedStateFromError(error: unknown) {
