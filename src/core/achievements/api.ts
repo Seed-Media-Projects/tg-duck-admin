@@ -15,3 +15,9 @@ export const deleteAchievementFX = createEffect(async (id: number) => {
 export const changePositionAchievementFX = createEffect(async (positions: ChangePositionPayload[]) => {
   await AX.post('/admin/api/achievement/position', { positions });
 });
+
+export const getAchievementFX = createEffect(async (id: number) => {
+  const { data } = await AX.get<AchievementItem>(`/admin/api/achievement/${id}`);
+
+  return data;
+});

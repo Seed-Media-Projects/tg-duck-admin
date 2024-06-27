@@ -6,6 +6,8 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom';
 import { signout } from './core/login/signout';
 import { ErrorPage } from './error-page';
+import { achievementLoader } from './routes/achievements/edit/loader';
+import { EditAchievementPage } from './routes/achievements/edit/page';
 import { achievementsLoader } from './routes/achievements/loader';
 import { AchievementsPage } from './routes/achievements/page';
 import { protectedLoader } from './routes/admin/loader';
@@ -71,6 +73,11 @@ const router = createBrowserRouter([
         path: 'achievements',
         loader: achievementsLoader,
         element: <AchievementsPage />,
+      },
+      {
+        path: 'achievements/:aId/edit',
+        loader: achievementLoader,
+        element: <EditAchievementPage />,
       },
     ],
   },
