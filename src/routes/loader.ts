@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
-import { LS, LSKeys } from '../../core/local-store';
+import { LS, LSKeys } from '../core/local-store';
 
 export const protectedLoader = ({ request }: LoaderFunctionArgs) => {
   if (!LS.getItem(LSKeys.AuthToken, '')) {
