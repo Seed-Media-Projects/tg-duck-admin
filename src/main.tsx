@@ -63,6 +63,18 @@ const router = createBrowserRouter([
         path: 'tasks/create',
         lazy: () => import('@routes/tasks/create'),
       },
+      // {
+      //   path: 'specials',
+      //   lazy: () => import('@routes/specials'),
+      // },
+      // {
+      //   path: 'specials/:specialId/edit',
+      //   lazy: () => import('@routes/specials/edit'),
+      // },
+      // {
+      //   path: 'specials/create',
+      //   lazy: () => import('@routes/specials/create'),
+      // },
     ],
   },
   {
