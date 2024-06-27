@@ -31,8 +31,8 @@ export const useUploader = ({ onFinishUpload }: { onFinishUpload: (f: FileInfo) 
             setProgress(Math.round((p.loaded * 100) / (p.total ?? 0)));
           },
         });
-        onFinishUpload(data);
         setProgress(0);
+        onFinishUpload(data);
       });
     },
     onDropRejected: e => {
