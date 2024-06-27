@@ -1,16 +1,17 @@
+import { AchievementItem, changePositionAchievementFX, deleteAchievementFX } from '@core/achievements';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { IconButton } from '@mui/material';
+import { ActionModal } from '@ui/modal/ActionModal';
+import { RowOptionsIcons, actionsConfig } from '@ui/table/RowOptions';
+import { typographyColumn } from '@ui/table/config-elements';
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
 import { ColumnShape } from 'react-base-table';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { AchievementItem, changePositionAchievementFX, deleteAchievementFX } from '../../core/achievements';
-import { ActionModal } from '../../ui/modal/ActionModal';
-import { RowOptionsIcons, actionsConfig } from '../../ui/table/RowOptions';
-import { typographyColumn } from '../../ui/table/config-elements';
+
 export const tableAchievementsConfig: ColumnShape<AchievementItem>[] = [
   {
     title: 'Position',

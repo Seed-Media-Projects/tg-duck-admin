@@ -1,5 +1,5 @@
+import { SaveConfigPayload, updateConfigFX } from '@core/config';
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
-import { SaveConfigPayload, updateConfigFX } from '../../../core/config';
 
 export const updateConfigAction = async ({ request }: LoaderFunctionArgs) => {
   const formData = await request.formData();

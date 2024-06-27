@@ -1,7 +1,7 @@
 import { SaveAchievement, createAchievementFX } from '@core/achievements';
 import { LoaderFunctionArgs, redirect } from 'react-router-dom';
 
-export const createAchievementAiection = async ({ request }: LoaderFunctionArgs) => {
+export const createAchievementAction = async ({ request }: LoaderFunctionArgs) => {
   const formData = await request.formData();
   const payload = Object.fromEntries(formData) as unknown as SaveAchievement;
 

@@ -1,11 +1,11 @@
+import { ConfigData, deleteConfigFX, getConfigDataFX } from '@core/config';
 import { Box, Button, Link, Switch, Typography } from '@mui/material';
+import { ActionModal } from '@ui/modal/ActionModal';
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import { ConfigData, deleteConfigFX } from '../../core/config';
-import { ActionModal } from '../../ui/modal/ActionModal';
 
-export const ConfigPage = () => {
+export const Component = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { config } = useLoaderData() as { config: ConfigData | null };
@@ -70,4 +70,11 @@ export const ConfigPage = () => {
       />
     </Box>
   );
+};
+
+Component.displayName = 'ConfigPage';
+
+export const loader = async () => {
+  const config = await getConfigDataFX();
+  return { config };
 };

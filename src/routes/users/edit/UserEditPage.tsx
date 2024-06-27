@@ -1,8 +1,8 @@
+import { UserInfo, getUserDataFX } from '@core/users';
 import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material';
-import { Form, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
-import { UserInfo } from '../../../core/users';
+import { Form, LoaderFunctionArgs, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
 
-export const EditUserPage = () => {
+export const Component = () => {
   const { user } = useLoaderData() as { user: UserInfo | null };
 
   const navigation = useNavigation();
@@ -117,4 +117,15 @@ export const EditUserPage = () => {
       </Form>
     </Box>
   );
+};
+
+Component.displayName = 'EditUserPage';
+
+export const loader = async ({ params }: LoaderFunctionArgs) => {
+  if (!params.userId) {
+    return { user: null };
+  }
+
+  const user = await getUserDataFX(Number(params.userId));
+  return { user };
 };

@@ -4,8 +4,10 @@ import { Box, Button, CircularProgress, TextField, Typography } from '@mui/mater
 import { CircularProgressWithLabel } from '@ui/ProgressWithLabel';
 import { useEffect, useState } from 'react';
 import { Form, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
+import { updateAchievementAction } from './action';
+import { achievementLoader } from './loader';
 
-export const EditAchievementPage = () => {
+const EditAchievementPage = () => {
   const { achievement } = useLoaderData() as { achievement: AchievementItem | null };
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
   const uploader = useUploader({ onFinishUpload: setFileInfo });
@@ -106,3 +108,7 @@ export const EditAchievementPage = () => {
     </Box>
   );
 };
+
+export const Component = EditAchievementPage;
+export const action = updateAchievementAction;
+export const loader = achievementLoader;

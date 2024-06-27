@@ -1,10 +1,11 @@
+import { AchievementItem } from '@core/achievements';
 import { Button, CardHeader, Grid, Link } from '@mui/material';
+import { BaseList } from '@ui/table/BaseTable';
 import { useLoaderData } from 'react-router-dom';
-import { AchievementItem } from '../../core/achievements';
-import { BaseList } from '../../ui/table/BaseTable';
 import { tableAchievementsConfig } from './TableConfig';
+import { achievementsLoader } from './loader';
 
-export const AchievementsPage = () => {
+const AchievementsPage = () => {
   const { achievements } = useLoaderData() as { achievements: AchievementItem[] };
 
   return (
@@ -26,3 +27,6 @@ export const AchievementsPage = () => {
     </Grid>
   );
 };
+
+export const Component = AchievementsPage;
+export const loader = achievementsLoader;

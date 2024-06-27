@@ -1,13 +1,14 @@
+import { UpdateUserData, UserInfo, getUserDataFX, getUserLvlFromExp, resetUserDataFX, updateUserDataFX } from '@core/users';
+import { getDiceBearAvatar } from '@core/utils/dicebear';
+import { getInitials } from '@core/utils/get-initials';
 import { Avatar, Box, Button, Link, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
+import { ActionModal } from '@ui/modal/ActionModal';
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
-import { getUserLvlFromExp, resetUserDataFX, UserInfo } from '../../../core/users';
-import { getDiceBearAvatar } from '../../../core/utils/dicebear';
-import { getInitials } from '../../../core/utils/get-initials';
-import { ActionModal } from '../../../ui/modal/ActionModal';
-export const UserPage = () => {
+import { LoaderFunctionArgs, redirect, useLoaderData, useNavigate } from 'react-router-dom';
+
+export const Component = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { user } = useLoaderData() as { user: UserInfo | null };
@@ -84,4 +85,42 @@ export const UserPage = () => {
       />
     </Box>
   );
+};
+
+Component.displayName = 'UserPage';
+
+export const loader = async ({ params }: LoaderFunctionArgs) => {
+  if (!params.userId) {
+    return { user: null };
+  }
+
+  const user = await getUserDataFX(Number(params.userId));
+  return { user };
+};
+
+export const action = async ({ request, params }: LoaderFunctionArgs) => {
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData) as unknown as UpdateUserData;
+
+  try {
+    await updateUserDataFX({
+      ...updates,
+      id: Number(params.userId),
+
+      betCoins: Number(updates.betCoins),
+      coins: Number(updates.coins),
+      coinsPerTap: Number(updates.coinsPerTap),
+      energy: Number(updates.energy),
+      experience: Number(updates.experience),
+      incomePerHour: Number(updates.incomePerHour),
+      maxEnergy: Number(updates.maxEnergy),
+      maxReferrals: Number(updates.maxReferrals),
+    });
+  } catch (error) {
+    return {
+      error: 'Cannot save user',
+    };
+  }
+
+  return redirect(`/users/${params.userId}`);
 };

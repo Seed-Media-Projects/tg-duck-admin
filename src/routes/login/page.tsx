@@ -1,8 +1,10 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Avatar, Box, Button, TextField } from '@mui/material';
 import { Form, useActionData, useLocation, useNavigation } from 'react-router-dom';
+import { loginAction } from './action';
+import { loginLoader } from './loader';
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const from = params.get('from') || '/';
@@ -40,3 +42,7 @@ export const LoginPage = () => {
     </Box>
   );
 };
+
+export const Component = LoginPage;
+export const loader = loginLoader;
+export const action = loginAction;

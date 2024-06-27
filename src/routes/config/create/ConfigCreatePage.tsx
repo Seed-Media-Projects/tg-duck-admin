@@ -1,11 +1,11 @@
+import { SaveConfigPayload, createConfigFX } from '@core/config';
+import { FileInfo, useUploader } from '@core/files';
 import { Box, Button, CircularProgress, FormControlLabel, Switch, TextField } from '@mui/material';
+import { CircularProgressWithLabel } from '@ui/ProgressWithLabel';
 import { useState } from 'react';
-import { Form, useActionData, useNavigation } from 'react-router-dom';
-import { FileInfo } from '../../../core/files/types';
-import { useUploader } from '../../../core/files/useUploader';
-import { CircularProgressWithLabel } from '../../../ui/ProgressWithLabel';
+import { Form, LoaderFunctionArgs, redirect, useActionData, useNavigation } from 'react-router-dom';
 
-export const ConfigCreatePage = () => {
+export const Component = () => {
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
   const navigation = useNavigation();
   const isLoading = navigation.formData?.get('techProblem') != null;
@@ -62,4 +62,32 @@ export const ConfigCreatePage = () => {
       </Form>
     </Box>
   );
+};
+
+Component.displayName = 'ConfigCreatePage';
+
+export const action = async ({ request }: LoaderFunctionArgs) => {
+  const formData = await request.formData();
+  const payload = Object.fromEntries(formData) as unknown as SaveConfigPayload;
+
+  if (!payload.fileId) {
+    return {
+      error: 'You must add file',
+    };
+  }
+
+  try {
+    await createConfigFX({
+      ...payload,
+      notification: !!payload.notification,
+      techProblem: !!payload.techProblem,
+      fileId: Number(payload.fileId),
+    });
+  } catch (error) {
+    return {
+      error: 'Cannot create config',
+    };
+  }
+
+  return redirect('/config');
 };

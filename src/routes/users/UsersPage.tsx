@@ -1,11 +1,10 @@
+import { $users, getUsersListFX, initGetUsersListFX } from '@core/users';
 import { CardHeader, Grid } from '@mui/material';
+import { BaseList } from '@ui/table/BaseTable';
 import { useUnit } from 'effector-react';
-import { getUsersListFX } from '../../core/users';
-import { $users } from '../../core/users/store';
-import { BaseList } from '../../ui/table/BaseTable';
 import { tableUsersConfig } from './TableConfig';
 
-export const UsersPage = () => {
+export const Component = () => {
   const { offset, users } = useUnit($users);
 
   return (
@@ -22,4 +21,11 @@ export const UsersPage = () => {
       />
     </Grid>
   );
+};
+
+Component.displayName = 'UsersPage';
+
+export const loader = async () => {
+  const users = await initGetUsersListFX();
+  return { users };
 };

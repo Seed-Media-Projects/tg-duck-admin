@@ -12,126 +12,50 @@ import { ErrorPage } from './error-page';
 const router = createBrowserRouter([
   {
     path: '/',
-    async lazy() {
-      const { Root } = await import('@routes/root');
-      const { protectedLoader } = await import('@routes/loader');
-      return {
-        loader: protectedLoader,
-        Component: Root,
-      };
-    },
+    lazy: () => import('@routes/root'),
     errorElement: <ErrorPage />,
     children: [
       {
         path: 'users',
-        async lazy() {
-          const { UsersPage, usersLoader } = await import('@routes/users');
-          return {
-            loader: usersLoader,
-            Component: UsersPage,
-          };
-        },
+        lazy: () => import('@routes/users'),
       },
       {
         path: 'users/:userId',
-        async lazy() {
-          const { UserPage, userLoader } = await import('@routes/users/edit');
-          return {
-            loader: userLoader,
-            Component: UserPage,
-          };
-        },
+        lazy: () => import('@routes/users/edit/UserPage'),
       },
       {
         path: 'users/:userId/edit',
-        async lazy() {
-          const { EditUserPage, userLoader, updateUserAction } = await import('@routes/users/edit');
-          return {
-            action: updateUserAction,
-            loader: userLoader,
-            Component: EditUserPage,
-          };
-        },
+        lazy: () => import('@routes/users/edit/UserEditPage'),
       },
       {
         path: 'config',
-        async lazy() {
-          const { ConfigPage, configLoader } = await import('@routes/config');
-          return {
-            loader: configLoader,
-            Component: ConfigPage,
-          };
-        },
+        lazy: () => import('@routes/config'),
       },
       {
         path: 'config/create',
-        async lazy() {
-          const { ConfigCreatePage, createConfigAction } = await import('@routes/config/create');
-          return {
-            action: createConfigAction,
-            Component: ConfigCreatePage,
-          };
-        },
+        lazy: () => import('@routes/config/create'),
       },
       {
         path: 'config/edit',
-        async lazy() {
-          const { configLoader } = await import('@routes/config/loader');
-          const { ConfigEditPage, updateConfigAction } = await import('@routes/config/edit');
-          return {
-            loader: configLoader,
-            action: updateConfigAction,
-            Component: ConfigEditPage,
-          };
-        },
+        lazy: () => import('@routes/config/edit'),
       },
       {
         path: 'achievements',
-        async lazy() {
-          const { AchievementsPage, achievementsLoader } = await import('@routes/achievements');
-          return {
-            loader: achievementsLoader,
-            Component: AchievementsPage,
-          };
-        },
+        lazy: () => import('@routes/achievements'),
       },
       {
         path: 'achievements/:aId/edit',
-        async lazy() {
-          const { EditAchievementPage, achievementLoader, updateAchievementAiection } = await import(
-            '@routes/achievements/edit'
-          );
-          return {
-            loader: achievementLoader,
-            action: updateAchievementAiection,
-            Component: EditAchievementPage,
-          };
-        },
+        lazy: () => import('@routes/achievements/edit'),
       },
       {
         path: 'achievements/create',
-        async lazy() {
-          const { achievementsLoader } = await import('@routes/achievements/loader');
-          const { CreateAchievementPage, createAchievementAiection } = await import('@routes/achievements/create');
-          return {
-            loader: achievementsLoader,
-            action: createAchievementAiection,
-            Component: CreateAchievementPage,
-          };
-        },
+        lazy: () => import('@routes/achievements/create'),
       },
     ],
   },
   {
     path: '/login',
-    async lazy() {
-      const { LoginPage, loginAction, loginLoader } = await import('@routes/login');
-      return {
-        loader: loginLoader,
-        action: loginAction,
-        Component: LoginPage,
-      };
-    },
+    lazy: () => import('@routes/login'),
   },
   {
     path: '/logout',

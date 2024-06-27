@@ -1,3 +1,4 @@
+import { LS, LSKeys } from '@core/local-store';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import MenuIcon from '@mui/icons-material/Menu';
 import PlusOneIcon from '@mui/icons-material/PlusOne';
@@ -26,11 +27,11 @@ import {
 } from '@mui/material';
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
-import { Outlet, useFetcher } from 'react-router-dom';
+import { LoaderFunctionArgs, Outlet, redirect, useFetcher } from 'react-router-dom';
 import { $token } from '../core/login/store';
 import { $snacks, closeSnack } from '../core/snacks/store';
 
-export const Root = () => {
+export const Component = () => {
   const [open, setOpen] = useState(false);
   const hasToken = !!useUnit($token);
   const snacksStore = useUnit($snacks);
@@ -182,4 +183,15 @@ export const Root = () => {
       </Snackbar>
     </>
   );
+};
+
+Component.displayName = 'Root';
+
+export const loader = ({ request }: LoaderFunctionArgs) => {
+  if (!LS.getItem(LSKeys.AuthToken, '')) {
+    const params = new URLSearchParams();
+    params.set('from', new URL(request.url).pathname);
+    return redirect('/login?' + params.toString());
+  }
+  return null;
 };

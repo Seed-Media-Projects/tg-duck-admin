@@ -1,12 +1,13 @@
 import { Box, Button, CircularProgress, FormControlLabel, Switch, TextField, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Form, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
-import { ConfigData } from '../../../core/config';
+import { ConfigData, getConfigDataFX } from '../../../core/config';
 import { FileInfo } from '../../../core/files/types';
 import { useUploader } from '../../../core/files/useUploader';
 import { CircularProgressWithLabel } from '../../../ui/ProgressWithLabel';
+import { updateConfigAction } from './action';
 
-export const ConfigEditPage = () => {
+const ConfigEditPage = () => {
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
   const navigation = useNavigation();
   const isLoading = navigation.formData?.get('techProblem') != null;
@@ -93,4 +94,11 @@ export const ConfigEditPage = () => {
       </Form>
     </Box>
   );
+};
+
+export const Component = ConfigEditPage;
+export const action = updateConfigAction;
+export const loader = async () => {
+  const config = await getConfigDataFX();
+  return { config };
 };
