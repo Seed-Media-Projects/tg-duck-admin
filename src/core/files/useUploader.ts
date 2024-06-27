@@ -18,7 +18,7 @@ export const useUploader = ({ onFinishUpload }: { onFinishUpload: (f: FileInfo) 
       'image/jpeg': [],
       'image/jpg': [],
       'image/gif': [],
-      'image/svg': [],
+      'image/svg+xml': [],
     },
     maxSize: oneMB * 10,
     disabled: loading,
