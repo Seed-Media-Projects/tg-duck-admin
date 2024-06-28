@@ -1,7 +1,6 @@
-import { UpgradeItem, deleteUpgradeFX } from '@core/upgrades';
+import { UpgradeLvlItem, deleteUpgradeLvlFX } from '@core/upgrade-lvls';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import FormatIndentIncreaseIcon from '@mui/icons-material/FormatIndentIncrease';
 import { IconButton } from '@mui/material';
 import { ActionModal } from '@ui/modal/ActionModal';
 import { RowOptionsIcons, actionsConfig } from '@ui/table/RowOptions';
@@ -9,34 +8,35 @@ import { typographyColumn } from '@ui/table/config-elements';
 import { useUnit } from 'effector-react';
 import { useState } from 'react';
 import { ColumnShape } from 'react-base-table';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export const tableUpgradesConfig: ColumnShape<UpgradeItem>[] = [
+export const tableUpgradeLvlsConfig: ColumnShape<UpgradeLvlItem>[] = [
   {
-    title: 'Name',
-    ...typographyColumn({ dataKey: 'name' }),
+    title: 'Lvl',
+    ...typographyColumn({ dataKey: 'lvl' }),
+    width: 80,
   },
   {
-    title: 'Description',
-    ...typographyColumn({ dataKey: 'description' }),
+    title: 'Price',
+    ...typographyColumn({ dataKey: 'price' }),
   },
   {
-    title: 'Type',
-    ...typographyColumn({ dataKey: 'type' }),
+    title: 'Increase amount',
+    ...typographyColumn({ dataKey: 'increaseAmount' }),
   },
   {
     ...actionsConfig(),
-    cellRenderer: ({ rowData }) => <Actions upgrade={rowData} />,
-    width: 140,
+    cellRenderer: ({ rowData }) => <Actions upgradeLvl={rowData} />,
   },
 ];
 
-const Actions = ({ upgrade }: { upgrade: UpgradeItem }) => {
+const Actions = ({ upgradeLvl }: { upgradeLvl: UpgradeLvlItem }) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const loading = useUnit(deleteUpgradeFX.pending);
+  const loading = useUnit(deleteUpgradeLvlFX.pending);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { upgradeId } = useParams();
 
   return (
     <RowOptionsIcons
@@ -44,12 +44,7 @@ const Actions = ({ upgrade }: { upgrade: UpgradeItem }) => {
         {
           icon: EditIcon,
           name: 'Edit',
-          link: `/upgrades/${upgrade.id}/edit`,
-        },
-        {
-          icon: FormatIndentIncreaseIcon,
-          name: 'Lvls',
-          link: `/upgrades/${upgrade.id}/lvls`,
+          link: `/upgrades/${upgradeId}/lvls/${upgradeLvl.id}/edit`,
         },
       ]}
       deleteBtn={
@@ -61,13 +56,13 @@ const Actions = ({ upgrade }: { upgrade: UpgradeItem }) => {
             loading={loading}
             onClose={handleClose}
             onConfirm={() => {
-              deleteUpgradeFX(upgrade.id).then(() => {
+              deleteUpgradeLvlFX({ id: upgradeLvl.id, upgradeId: Number(upgradeId) }).then(() => {
                 handleClose();
                 navigate('.', { replace: true });
               });
             }}
             open={open}
-            title={`Delete upgrade: ${upgrade.name}`}
+            title={`Delete upgrade lvl: ${upgradeLvl.lvl}`}
             subtitle="Are you sure?"
           />
         </>
