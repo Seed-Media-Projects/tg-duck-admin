@@ -1,15 +1,16 @@
 import { FileInfo, useUploader } from '@core/files';
 import { SpecialItem } from '@core/specials';
-import { Box, Button, CircularProgress, MenuItem, TextField, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, MenuItem, TextField } from '@mui/material';
 import { CircularProgressWithLabel } from '@ui/ProgressWithLabel';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Form, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
 import { specialOptions } from '../constants';
-import { updateSpecialAction } from './action';
-import { specialLoader } from './loader';
+import { specialsLoader } from '../loader';
+import { createSpecialAction } from './action';
 
-const EditSpecialPage = () => {
-  const { special } = useLoaderData() as { special: SpecialItem | null };
+const CreateSpecialPage = () => {
+  const { specials } = useLoaderData() as { specials: SpecialItem[] };
+
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
   const uploader = useUploader({ onFinishUpload: setFileInfo });
 
@@ -17,20 +18,6 @@ const EditSpecialPage = () => {
   const isLoading = navigation.formData?.get('name') != null;
 
   const actionData = useActionData() as { error: string } | undefined;
-
-  useEffect(() => {
-    if (special?.file) {
-      setFileInfo({
-        id: special.file.id,
-        url: special.file.fileUrl,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!special) {
-    return <Typography>Special not found</Typography>;
-  }
 
   return (
     <Box
@@ -69,52 +56,27 @@ const EditSpecialPage = () => {
             />
           ) : null}
         </Box>
-        <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus defaultValue={special.name} />
-
-        <TextField margin="normal" required fullWidth select label="Type" defaultValue={special.type} name="type">
+        <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus />
+        <TextField margin="normal" required fullWidth select label="Type" name="type">
           {specialOptions.map(o => (
             <MenuItem key={o.value} value={o.value}>
               {o.title}
             </MenuItem>
           ))}
         </TextField>
-        <TextField margin="normal" fullWidth label="Description" name="description" defaultValue={special.description} />
-        <TextField margin="normal" fullWidth label="Effect" name="effect" defaultValue={special.effect} />
-        <TextField
-          margin="normal"
-          fullWidth
-          required
-          label="Cooldown (in seconds)"
-          name="cooldown"
-          defaultValue={special.cooldown}
-          type="number"
-        />
-        <TextField
-          margin="normal"
-          fullWidth
-          required
-          label="Duration (in seconds)"
-          name="duration"
-          defaultValue={special.duration}
-          type="number"
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          label="Required lvl"
-          name="requiredLvl"
-          defaultValue={special.requiredLvl}
-          type="number"
-        />
+        <TextField margin="normal" fullWidth label="Description" name="description" />
+        <TextField margin="normal" fullWidth label="Effect" name="effect" />
+        <TextField margin="normal" fullWidth required label="Cooldown (in seconds)" name="cooldown" type="number" />
+        <TextField margin="normal" fullWidth required label="Duration (in seconds)" name="duration" type="number" />
+        <TextField margin="normal" required fullWidth label="Required lvl" name="requiredLvl" type="number" />
         <TextField
           margin="normal"
           required
           fullWidth
           label="Position"
           name="position"
-          defaultValue={special.position}
           type="number"
+          defaultValue={specials.length + 1}
         />
 
         <Button type="submit" variant="contained" disabled={isLoading} sx={{ mt: 3, mb: 2 }}>
@@ -127,6 +89,6 @@ const EditSpecialPage = () => {
   );
 };
 
-export const Component = EditSpecialPage;
-export const action = updateSpecialAction;
-export const loader = specialLoader;
+export const Component = CreateSpecialPage;
+export const action = createSpecialAction;
+export const loader = specialsLoader;

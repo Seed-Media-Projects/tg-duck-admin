@@ -71,10 +71,10 @@ const router = createBrowserRouter([
         path: 'specials/:specialId/edit',
         lazy: () => import('@routes/specials/edit'),
       },
-      // {
-      //   path: 'specials/create',
-      //   lazy: () => import('@routes/specials/create'),
-      // },
+      {
+        path: 'specials/create',
+        lazy: () => import('@routes/specials/create'),
+      },
     ],
   },
   {
