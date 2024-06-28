@@ -1,4 +1,5 @@
 import { LS, LSKeys } from '@core/local-store';
+import HomeIcon from '@mui/icons-material/Home';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import MenuIcon from '@mui/icons-material/Menu';
 import PlusOneIcon from '@mui/icons-material/PlusOne';
@@ -71,6 +72,17 @@ export const Component = () => {
         <Drawer open={open} onClose={closeMenu}>
           <Box sx={{ width: 250 }} role="presentation" onClick={closeMenu}>
             <List>
+              <Link href="/" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Главная" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+
               <Link href="/users" sx={{ textDecoration: 'none', color: 'MenuText' }}>
                 <ListItem disablePadding>
                   <ListItemButton>

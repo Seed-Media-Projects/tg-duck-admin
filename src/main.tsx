@@ -16,6 +16,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: '',
+        lazy: () => import('@routes/home'),
+      },
+      {
         path: 'users',
         lazy: () => import('@routes/users'),
       },
