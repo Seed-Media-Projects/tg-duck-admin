@@ -99,6 +99,18 @@ const router = createBrowserRouter([
         path: 'markets/:marketId/lvls/create',
         lazy: () => import('@routes/market-lvls/create'),
       },
+      {
+        path: 'upgrades',
+        lazy: () => import('@routes/upgrades'),
+      },
+      {
+        path: 'upgrades/:upgradeId/edit',
+        lazy: () => import('@routes/upgrades/edit'),
+      },
+      {
+        path: 'upgrades/create',
+        lazy: () => import('@routes/upgrades/create'),
+      },
     ],
   },
   {
