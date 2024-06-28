@@ -113,15 +113,27 @@ const router = createBrowserRouter([
       },
       {
         path: 'upgrades/:upgradeId/lvls',
-        lazy: () => import('@routes/upgrade-lvl'),
+        lazy: () => import('@routes/upgrade-lvls'),
       },
       {
         path: 'upgrades/:upgradeId/lvls/:lvlId/edit',
-        lazy: () => import('@routes/upgrade-lvl/edit'),
+        lazy: () => import('@routes/upgrade-lvls/edit'),
       },
       {
         path: 'upgrades/:upgradeId/lvls/create',
-        lazy: () => import('@routes/upgrade-lvl/create'),
+        lazy: () => import('@routes/upgrade-lvls/create'),
+      },
+      {
+        path: 'boosts',
+        lazy: () => import('@routes/boosts'),
+      },
+      {
+        path: 'boosts/:boostId/edit',
+        lazy: () => import('@routes/boosts/edit'),
+      },
+      {
+        path: 'boosts/create',
+        lazy: () => import('@routes/boosts/create'),
       },
     ],
   },
