@@ -69,7 +69,15 @@ const EditTaskPage = () => {
           ) : null}
         </Box>
         <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus defaultValue={task.name} />
-        <TextField margin="normal" fullWidth label="Description" name="description" defaultValue={task.description} />
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Description"
+          name="description"
+          multiline
+          rows={4}
+          defaultValue={task.description}
+        />
         <TextField
           margin="normal"
           fullWidth

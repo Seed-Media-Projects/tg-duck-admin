@@ -70,7 +70,15 @@ const EditAchievementPage = () => {
         </Box>
         <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus defaultValue={achievement.name} />
         <TextField margin="normal" required fullWidth label="Type" name="type" defaultValue={achievement.type} />
-        <TextField margin="normal" fullWidth label="Description" name="description" defaultValue={achievement.description} />
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Description"
+          name="description"
+          multiline
+          rows={4}
+          defaultValue={achievement.description}
+        />
         <TextField
           margin="normal"
           fullWidth

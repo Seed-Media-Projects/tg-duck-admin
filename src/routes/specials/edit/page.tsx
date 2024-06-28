@@ -78,8 +78,16 @@ const EditSpecialPage = () => {
             </MenuItem>
           ))}
         </TextField>
-        <TextField margin="normal" fullWidth label="Description" name="description" defaultValue={special.description} />
-        <TextField margin="normal" fullWidth label="Effect" name="effect" defaultValue={special.effect} />
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Description"
+          name="description"
+          multiline
+          rows={4}
+          defaultValue={special.description}
+        />
+        <TextField margin="normal" fullWidth label="Effect" name="effect" multiline rows={4} defaultValue={special.effect} />
         <TextField
           margin="normal"
           fullWidth

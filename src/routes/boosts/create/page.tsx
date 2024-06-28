@@ -64,8 +64,8 @@ const CreateBoostPage = () => {
             </MenuItem>
           ))}
         </TextField>
-        <TextField margin="normal" fullWidth label="Description" name="description" />
-        <TextField margin="normal" fullWidth label="Effect" name="effect" />
+        <TextField margin="normal" fullWidth label="Description" name="description" multiline rows={4} />
+        <TextField margin="normal" fullWidth label="Effect" name="effect" multiline rows={4} />
         <TextField margin="normal" fullWidth required label="Active time (in seconds)" name="activeTime" type="number" />
         <TextField margin="normal" required fullWidth label="Max quantity" name="maxQuantity" type="number" />
         <TextField

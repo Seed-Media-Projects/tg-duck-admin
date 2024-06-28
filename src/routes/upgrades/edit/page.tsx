@@ -78,7 +78,15 @@ const EditUpgradePage = () => {
             </MenuItem>
           ))}
         </TextField>
-        <TextField margin="normal" fullWidth label="Description" name="description" defaultValue={upgrade.description} />
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Description"
+          name="description"
+          multiline
+          rows={4}
+          defaultValue={upgrade.description}
+        />
 
         <Button type="submit" variant="contained" disabled={isLoading} sx={{ mt: 3, mb: 2 }}>
           {isLoading ? <CircularProgress size={24} color="primary" /> : 'save'}

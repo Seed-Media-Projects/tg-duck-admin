@@ -69,7 +69,15 @@ const EditMarketPage = () => {
           ) : null}
         </Box>
         <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus defaultValue={market.name} />
-        <TextField margin="normal" fullWidth label="Description" name="description" defaultValue={market.description} />
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Description"
+          name="description"
+          multiline
+          rows={4}
+          defaultValue={market.description}
+        />
         <TextField
           margin="normal"
           required

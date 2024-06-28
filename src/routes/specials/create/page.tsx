@@ -64,8 +64,8 @@ const CreateSpecialPage = () => {
             </MenuItem>
           ))}
         </TextField>
-        <TextField margin="normal" fullWidth label="Description" name="description" />
-        <TextField margin="normal" fullWidth label="Effect" name="effect" />
+        <TextField margin="normal" fullWidth label="Description" name="description" multiline rows={4} />
+        <TextField margin="normal" fullWidth label="Effect" name="effect" multiline rows={4} />
         <TextField margin="normal" fullWidth required label="Cooldown (in seconds)" name="cooldown" type="number" />
         <TextField margin="normal" fullWidth required label="Duration (in seconds)" name="duration" type="number" />
         <TextField margin="normal" required fullWidth label="Required lvl" name="requiredLvl" type="number" />

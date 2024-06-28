@@ -57,7 +57,7 @@ const CreateAchievementPage = () => {
         </Box>
         <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus />
         <TextField margin="normal" required fullWidth label="Type" name="type" />
-        <TextField margin="normal" fullWidth label="Description" name="description" />
+        <TextField margin="normal" fullWidth label="Description" name="description" multiline rows={4} />
         <TextField margin="normal" fullWidth required label="Reward experience" name="rewardExperience" type="number" />
         <TextField margin="normal" required fullWidth label="Reward coins" name="rewardCoins" type="number" />
         <TextField

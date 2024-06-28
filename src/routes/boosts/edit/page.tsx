@@ -78,8 +78,16 @@ const EditBoostPage = () => {
             </MenuItem>
           ))}
         </TextField>
-        <TextField margin="normal" fullWidth label="Description" name="description" defaultValue={boost.description} />
-        <TextField margin="normal" fullWidth label="Effect" name="effect" defaultValue={boost.effect} />
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Description"
+          name="description"
+          multiline
+          rows={4}
+          defaultValue={boost.description}
+        />
+        <TextField margin="normal" fullWidth label="Effect" name="effect" multiline rows={4} defaultValue={boost.effect} />
         <TextField
           margin="normal"
           fullWidth
