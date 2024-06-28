@@ -1,7 +1,7 @@
 import { Box, Link, Typography, useTheme } from '@mui/material';
 import { ColumnShape } from 'react-base-table';
 
-type Props<T extends { id: number }> = {
+type Props<T extends { id: number | string }> = {
   viewIdKeys: (keyof T)[];
   link: (id: T['id']) => string;
   key: string;
@@ -31,7 +31,7 @@ function BoxLink({ viewId, href }: { viewId: React.ReactNode; href: string }) {
   );
 }
 
-export function idLinkColumn<T extends { id: number }>({ viewIdKeys, link, key }: Props<T>): ColumnShape<T> {
+export function idLinkColumn<T extends { id: number | string }>({ viewIdKeys, link, key }: Props<T>): ColumnShape<T> {
   return {
     key,
     width: 150,

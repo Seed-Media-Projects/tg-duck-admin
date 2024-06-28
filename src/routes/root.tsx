@@ -171,7 +171,7 @@ export const Component = () => {
                 </ListItem>
               </Link>
 
-              <Link href="/crash-game" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+              <Link href="/crash-games" sx={{ textDecoration: 'none', color: 'MenuText' }}>
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>

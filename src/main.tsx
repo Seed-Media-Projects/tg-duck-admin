@@ -139,6 +139,14 @@ const router = createBrowserRouter([
         path: 'boosts/create',
         lazy: () => import('@routes/boosts/create'),
       },
+      {
+        path: 'crash-games',
+        lazy: () => import('@routes/crash'),
+      },
+      {
+        path: 'crash-games/:gameId',
+        lazy: () => import('@routes/crash/detail'),
+      },
     ],
   },
   {
