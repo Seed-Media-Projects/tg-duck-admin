@@ -75,6 +75,18 @@ const router = createBrowserRouter([
         path: 'specials/create',
         lazy: () => import('@routes/specials/create'),
       },
+      {
+        path: 'markets',
+        lazy: () => import('@routes/markets'),
+      },
+      {
+        path: 'markets/:marketId/edit',
+        lazy: () => import('@routes/markets/edit'),
+      },
+      {
+        path: 'markets/create',
+        lazy: () => import('@routes/markets/create'),
+      },
     ],
   },
   {
