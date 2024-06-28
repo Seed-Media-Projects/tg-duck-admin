@@ -1,4 +1,5 @@
 import { MarketItem, changePositionMarketFX, deleteMarketFX } from '@core/markets';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -29,7 +30,7 @@ export const tableMarketsConfig: ColumnShape<MarketItem>[] = [
   {
     ...actionsConfig(),
     cellRenderer: ({ rowData, rowIndex }) => <Actions market={rowData} rowIndex={rowIndex} />,
-    width: 200,
+    width: 220,
   },
 ];
 
@@ -88,6 +89,11 @@ const Actions = ({ market, rowIndex }: { market: MarketItem; rowIndex: number })
           icon: EditIcon,
           name: 'Edit',
           link: `/markets/${market.id}/edit`,
+        },
+        {
+          icon: AddBusinessIcon,
+          name: 'Lvls',
+          link: `/markets/${market.id}/lvls`,
         },
       ]}
       deleteBtn={

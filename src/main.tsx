@@ -87,6 +87,18 @@ const router = createBrowserRouter([
         path: 'markets/create',
         lazy: () => import('@routes/markets/create'),
       },
+      {
+        path: 'markets/:marketId/lvls',
+        lazy: () => import('@routes/market-lvls'),
+      },
+      {
+        path: 'markets/:marketId/lvls/:lvlId/edit',
+        lazy: () => import('@routes/market-lvls/edit'),
+      },
+      {
+        path: 'markets/:marketId/lvls/create',
+        lazy: () => import('@routes/market-lvls/create'),
+      },
     ],
   },
   {
