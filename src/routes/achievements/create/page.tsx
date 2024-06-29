@@ -1,9 +1,10 @@
 import { AchievementItem } from '@core/achievements';
 import { FileInfo, useUploader } from '@core/files';
-import { Box, Button, CircularProgress, TextField } from '@mui/material';
+import { Box, Button, CircularProgress, MenuItem, TextField } from '@mui/material';
 import { CircularProgressWithLabel } from '@ui/ProgressWithLabel';
 import { useState } from 'react';
 import { Form, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
+import { achievementOptions } from '../constants';
 import { achievementsLoader } from '../loader';
 import { createAchievementAction } from './action';
 
@@ -56,7 +57,13 @@ const CreateAchievementPage = () => {
           ) : null}
         </Box>
         <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus />
-        <TextField margin="normal" required fullWidth label="Type" name="type" />
+        <TextField margin="normal" required fullWidth select label="Type" name="type">
+          {achievementOptions.map(o => (
+            <MenuItem key={o.value} value={o.value}>
+              {o.title}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField margin="normal" fullWidth label="Description" name="description" multiline rows={4} />
         <TextField margin="normal" fullWidth required label="Reward experience" name="rewardExperience" type="number" />
         <TextField margin="normal" required fullWidth label="Reward coins" name="rewardCoins" type="number" />

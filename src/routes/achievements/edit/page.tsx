@@ -1,9 +1,10 @@
 import { AchievementItem } from '@core/achievements';
 import { FileInfo, useUploader } from '@core/files';
-import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, MenuItem, TextField, Typography } from '@mui/material';
 import { CircularProgressWithLabel } from '@ui/ProgressWithLabel';
 import { useEffect, useState } from 'react';
 import { Form, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
+import { achievementOptions } from '../constants';
 import { updateAchievementAction } from './action';
 import { achievementLoader } from './loader';
 
@@ -69,7 +70,13 @@ const EditAchievementPage = () => {
           ) : null}
         </Box>
         <TextField margin="normal" required fullWidth label="Name" name="name" autoFocus defaultValue={achievement.name} />
-        <TextField margin="normal" required fullWidth label="Type" name="type" defaultValue={achievement.type} />
+        <TextField margin="normal" required fullWidth select label="Type" defaultValue={achievement.type} name="type">
+          {achievementOptions.map(o => (
+            <MenuItem key={o.value} value={o.value}>
+              {o.title}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           margin="normal"
           fullWidth

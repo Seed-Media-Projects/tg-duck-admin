@@ -18,6 +18,14 @@ export const tableUsersConfig: ColumnShape<UserListItem>[] = [
     ...typographyColumnToKey('userInfo', 'coins'),
   },
   {
+    title: 'Total taps',
+    ...typographyColumnToKey('userInfo', 'totalTaps'),
+  },
+  {
+    title: 'Time spent',
+    ...typographyColumnToKey('userInfo', 'timeSpent'),
+  },
+  {
     title: 'Income per hour',
     ...typographyColumnToKey('userInfo', 'incomePerHour'),
   },

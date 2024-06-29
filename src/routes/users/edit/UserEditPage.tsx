@@ -1,6 +1,6 @@
-import { UserInfo, getUserDataFX } from '@core/users';
+import { UpdateUserData, UserInfo, getUserDataFX, updateUserDataFX } from '@core/users';
 import { Box, Button, CircularProgress, TextField, Typography } from '@mui/material';
-import { Form, LoaderFunctionArgs, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
+import { Form, LoaderFunctionArgs, redirect, useActionData, useLoaderData, useNavigation } from 'react-router-dom';
 
 export const Component = () => {
   const { user } = useLoaderData() as { user: UserInfo | null };
@@ -108,6 +108,24 @@ export const Component = () => {
           type="number"
           defaultValue={user.userInfo.betCoins}
         />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          label="Time spent (in seconds)"
+          name="timeSpent"
+          type="number"
+          defaultValue={user.userInfo.timeSpent}
+        />
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          label="Total taps"
+          name="totalTaps"
+          type="number"
+          defaultValue={user.userInfo.totalTaps}
+        />
 
         <Button type="submit" variant="contained" disabled={isLoading} sx={{ mt: 3, mb: 2 }}>
           {isLoading ? <CircularProgress size={24} color="primary" /> : 'save'}
@@ -128,4 +146,33 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 
   const user = await getUserDataFX(Number(params.userId));
   return { user };
+};
+
+export const action = async ({ request, params }: LoaderFunctionArgs) => {
+  const formData = await request.formData();
+  const updates = Object.fromEntries(formData) as unknown as UpdateUserData;
+
+  try {
+    await updateUserDataFX({
+      ...updates,
+      id: Number(params.userId),
+
+      betCoins: Number(updates.betCoins),
+      coins: Number(updates.coins),
+      coinsPerTap: Number(updates.coinsPerTap),
+      energy: Number(updates.energy),
+      experience: Number(updates.experience),
+      incomePerHour: Number(updates.incomePerHour),
+      maxEnergy: Number(updates.maxEnergy),
+      maxReferrals: Number(updates.maxReferrals),
+      timeSpent: Number(updates.timeSpent),
+      totalTaps: Number(updates.totalTaps),
+    });
+  } catch (error) {
+    return {
+      error: 'Cannot save user',
+    };
+  }
+
+  return redirect(`/users/${params.userId}`);
 };

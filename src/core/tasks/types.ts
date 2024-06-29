@@ -4,6 +4,7 @@ export type TaskItem = {
   id: number;
   name: string;
   description: string | null;
+  link: string | null;
   rewardExperience: number;
   rewardCoins: number;
   position: number;
@@ -13,6 +14,7 @@ export type SaveTask = {
   fileId: number;
   name: string;
   description: string | null;
+  link: string | null;
   rewardExperience: number;
   rewardCoins: number;
   position: number;

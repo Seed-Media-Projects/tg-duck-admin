@@ -23,6 +23,8 @@ export type DuckyUserInfo = {
   coins: number;
   coinsPerTap: number;
   betCoins: number;
+  timeSpent: number;
+  totalTaps: number;
 };
 
 export type UserReferral = {
@@ -115,4 +117,6 @@ export type UpdateUserData = {
   coins: number;
   coinsPerTap: number;
   betCoins: number;
+  timeSpent: number;
+  totalTaps: number;
 };
