@@ -5,6 +5,7 @@ export type AchievementItem = {
   name: string;
   type: DuckyAchievementType;
   description: string | null;
+  category: string | null;
   rewardExperience: number | null;
   rewardCoins: number | null;
   position: number;
@@ -36,4 +37,6 @@ export enum DuckyAchievementType {
   Lvl5 = 'lvl_5',
   Lvl10 = 'lvl_10',
   Tasks3 = 'tasks_3',
+  Crash10 = 'crash_10',
+  CrashTotal1kk = 'crash_total_1kk',
 }

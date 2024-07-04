@@ -57,4 +57,12 @@ export const achievementOptions = [
     title: 'Spent 100k on upgrades',
     value: DuckyAchievementType.Upgrades100k,
   },
+  {
+    title: 'Play 10 crash games',
+    value: DuckyAchievementType.Crash10,
+  },
+  {
+    title: 'Win 1kk in crash games',
+    value: DuckyAchievementType.CrashTotal1kk,
+  },
 ];

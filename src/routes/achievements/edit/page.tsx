@@ -77,6 +77,7 @@ const EditAchievementPage = () => {
             </MenuItem>
           ))}
         </TextField>
+        <TextField margin="normal" fullWidth label="Category" name="category" defaultValue={achievement.category} />
         <TextField
           margin="normal"
           fullWidth

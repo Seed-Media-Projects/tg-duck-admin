@@ -23,6 +23,10 @@ export const tableAchievementsConfig: ColumnShape<AchievementItem>[] = [
     ...typographyColumn({ dataKey: 'name' }),
   },
   {
+    title: 'Category',
+    ...typographyColumn({ dataKey: 'category' }),
+  },
+  {
     title: 'Type',
     ...typographyColumn({ dataKey: 'type' }),
   },

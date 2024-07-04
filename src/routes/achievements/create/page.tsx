@@ -64,6 +64,7 @@ const CreateAchievementPage = () => {
             </MenuItem>
           ))}
         </TextField>
+        <TextField margin="normal" fullWidth label="Category" name="category" />
         <TextField margin="normal" fullWidth label="Description" name="description" multiline rows={4} />
         <TextField margin="normal" fullWidth required label="Reward experience" name="rewardExperience" type="number" />
         <TextField margin="normal" required fullWidth label="Reward coins" name="rewardCoins" type="number" />
