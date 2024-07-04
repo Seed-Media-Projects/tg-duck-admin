@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import { ReactNode } from 'react';
 import BaseTable, { AutoResizer, ColumnShape } from 'react-base-table';
 import { NoRowsOverlay } from './NoRows';
+import styles from './style.module.css';
 import { ValidRowModel } from './types';
 
 type Props<Row extends ValidRowModel> = {
@@ -62,7 +63,7 @@ export function BaseList<Row extends ValidRowModel>({
     <Card sx={cardSX} id={cardId}>
       {listHeader}
       <BaseListBox>
-        <AutoResizer height={rowHeight * 15}>
+        <AutoResizer className={styles.autoresizer}>
           {({ height, width }) => (
             <BaseTable
               width={width}
