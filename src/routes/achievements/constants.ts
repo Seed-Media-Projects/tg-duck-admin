@@ -50,8 +50,12 @@ export const achievementOptions = [
     value: DuckyAchievementType.Time1h,
   },
   {
-    title: 'Get upgrade lvl 10',
-    value: DuckyAchievementType.Upgrade10lvl,
+    title: 'Get market lvl 10',
+    value: DuckyAchievementType.Market10lvl,
+  },
+  {
+    title: 'Get 5 markets with 5 lvl',
+    value: DuckyAchievementType.Market5x5lvl,
   },
   {
     title: 'Spent 100k on upgrades',
