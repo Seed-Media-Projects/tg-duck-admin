@@ -1,4 +1,5 @@
 import { $games, getCrashGamesListFX, startCrashGamesFX, stopCrashGamesFX } from '@core/crash';
+import { useInterval } from '@core/utils/userInterval';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Box, Button, Card, CardHeader, CircularProgress, Grid, Typography } from '@mui/material';
@@ -17,6 +18,8 @@ const CrashGamesPage = () => {
   const { queueStatus } = useLoaderData() as { queueStatus: boolean };
   const { offset, games } = useUnit($games);
   const isLoading = useUnit(loadingCombine);
+
+  useInterval(() => navigate('.', { replace: true }), 15000);
 
   const toggleGames = useCallback(() => {
     if (queueStatus) {
