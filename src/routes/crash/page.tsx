@@ -19,7 +19,7 @@ const CrashGamesPage = () => {
   const { offset, games } = useUnit($games);
   const isLoading = useUnit(loadingCombine);
 
-  useInterval(() => navigate('.', { replace: true }), 15000);
+  useInterval(() => navigate('.', { replace: true }), 5000);
 
   const toggleGames = useCallback(() => {
     if (queueStatus) {
