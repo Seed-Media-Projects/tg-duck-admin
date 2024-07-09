@@ -1,6 +1,5 @@
 import { CrashGameInfo } from '@core/crash';
 import { round } from '@core/utils/round';
-import { computeDuration } from '@core/utils/time';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Box, Divider, Typography } from '@mui/material';
@@ -13,8 +12,6 @@ const GameDetailPage = () => {
   if (!game) {
     return <Typography>Game not found</Typography>;
   }
-
-  const stoppedRatio = (10 + computeDuration(game.started).asSeconds()) / 10;
 
   return (
     <Box>
@@ -41,7 +38,7 @@ const GameDetailPage = () => {
           </Box>
           <Typography gutterBottom>Bet: {p.bet}</Typography>
           <Typography gutterBottom>Ratio: {p.ratio}</Typography>
-          <Typography gutterBottom>Bet result: {round(p.bet * stoppedRatio)}</Typography>
+          <Typography gutterBottom>Bet result: {round(p.bet * p.ratio)}</Typography>
           <Typography gutterBottom>Joined: {dayjs(p.joined).format('DD MMM YYYY HH:mm:ss')}</Typography>
           <Typography gutterBottom>Stopped: {dayjs(p.stopped).format('DD MMM YYYY HH:mm:ss')}</Typography>
         </Box>
