@@ -2,8 +2,6 @@ export type HealthInfo = {
   details: {
     'external-network': HealthItem;
     database: HealthItem;
-    memory_heap: HealthItem;
-    memory_rss: HealthItem;
   };
 };
 

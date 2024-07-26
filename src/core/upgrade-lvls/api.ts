@@ -1,27 +1,27 @@
 import { createEffect } from 'effector';
-import { AX } from '../data/fetcher';
+import { AXDUCK } from '../data/fetcher';
 import { SaveUpgradeLvl, UpgradeLvlItem } from './types';
 
 export const getUpgradeLvlsFX = createEffect(async (upgradeId: number) => {
-  const { data } = await AX.get<UpgradeLvlItem[]>(`/admin/api/upgrade/${upgradeId}/lvl`);
+  const { data } = await AXDUCK.get<UpgradeLvlItem[]>(`/admin/api/upgrade/${upgradeId}/lvl`);
 
   return data;
 });
 
 export const deleteUpgradeLvlFX = createEffect(async ({ id, upgradeId }: { id: number; upgradeId: number }) => {
-  await AX.delete(`/admin/api/upgrade/${upgradeId}/lvl/${id}`);
+  await AXDUCK.delete(`/admin/api/upgrade/${upgradeId}/lvl/${id}`);
 });
 
 export const getUpgradeLvlFX = createEffect(async ({ id, upgradeId }: { id: number; upgradeId: number }) => {
-  const { data } = await AX.get<UpgradeLvlItem>(`/admin/api/upgrade/${upgradeId}/lvl/${id}`);
+  const { data } = await AXDUCK.get<UpgradeLvlItem>(`/admin/api/upgrade/${upgradeId}/lvl/${id}`);
 
   return data;
 });
 export const updateUpgradeLvlFX = createEffect(
   async ({ id, upgradeId, ...payload }: { id: number; upgradeId: number } & SaveUpgradeLvl) => {
-    await AX.put(`/admin/api/upgrade/${upgradeId}/lvl/${id}`, payload);
+    await AXDUCK.put(`/admin/api/upgrade/${upgradeId}/lvl/${id}`, payload);
   },
 );
 export const createUpgradeLvlFX = createEffect(async ({ upgradeId, ...payload }: { upgradeId: number } & SaveUpgradeLvl) => {
-  await AX.post(`/admin/api/upgrade/${upgradeId}/lvl`, payload);
+  await AXDUCK.post(`/admin/api/upgrade/${upgradeId}/lvl`, payload);
 });

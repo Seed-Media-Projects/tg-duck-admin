@@ -6,55 +6,74 @@ import { Box, Typography } from '@mui/material';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { homeLoader } from './loader';
 const HomePage = () => {
-  const { details } = useLoaderData() as { details: HealthInfo['details'] };
+  const { detailsDuck, detailsPriceme } = useLoaderData() as {
+    detailsPriceme: HealthInfo['details'];
+    detailsDuck: HealthInfo['details'];
+  };
 
   const navigate = useNavigate();
 
   useInterval(() => navigate('.', { replace: true }), 15000);
 
   return (
-    <Box display="flex" flexDirection="column" gap={2}>
-      <Box display="flex" alignItems="center" gap={2}>
-        <Typography>Database:</Typography>
-        {details.database.status === 'up' ? <CheckCircleIcon color="success" /> : <CancelIcon color="error" />}
-      </Box>
-      {details.database.message && (
+    <>
+      <Box display="flex" flexDirection="column" gap={2}>
+        <Typography variant="h5">Duckytap</Typography>
+
         <Box display="flex" alignItems="center" gap={2}>
-          <Typography>Database message:</Typography>
-          <Typography>{details.database.message} </Typography>
+          <Typography>Database:</Typography>
+          {detailsDuck.database.status === 'up' ? <CheckCircleIcon color="success" /> : <CancelIcon color="error" />}
         </Box>
-      )}
-      <Box display="flex" alignItems="center" gap={2}>
-        <Typography>External-network:</Typography>
-        {details['external-network'].status === 'up' ? <CheckCircleIcon color="success" /> : <CancelIcon color="error" />}
-      </Box>
-      {details['external-network'].message && (
+        {detailsDuck.database.message && (
+          <Box display="flex" alignItems="center" gap={2}>
+            <Typography>Database message:</Typography>
+            <Typography>{detailsDuck.database.message} </Typography>
+          </Box>
+        )}
         <Box display="flex" alignItems="center" gap={2}>
-          <Typography>External-network message:</Typography>
-          <Typography>{details['external-network'].message} </Typography>
+          <Typography>External-network:</Typography>
+          {detailsDuck['external-network'].status === 'up' ? (
+            <CheckCircleIcon color="success" />
+          ) : (
+            <CancelIcon color="error" />
+          )}
         </Box>
-      )}
-      <Box display="flex" alignItems="center" gap={2}>
-        <Typography>Memory heap:</Typography>
-        {details.memory_heap.status === 'up' ? <CheckCircleIcon color="success" /> : <CancelIcon color="error" />}
+        {detailsDuck['external-network'].message && (
+          <Box display="flex" alignItems="center" gap={2}>
+            <Typography>External-network message:</Typography>
+            <Typography>{detailsDuck['external-network'].message} </Typography>
+          </Box>
+        )}
       </Box>
-      {details.memory_heap.message && (
+      <Box display="flex" flexDirection="column" gap={2} mt={2}>
+        <Typography variant="h5">Priceme</Typography>
+
         <Box display="flex" alignItems="center" gap={2}>
-          <Typography>Memory heap message:</Typography>
-          <Typography>{details.memory_heap.message} </Typography>
+          <Typography>Database:</Typography>
+          {detailsPriceme.database.status === 'up' ? <CheckCircleIcon color="success" /> : <CancelIcon color="error" />}
         </Box>
-      )}
-      <Box display="flex" alignItems="center" gap={2}>
-        <Typography>Memory rss:</Typography>
-        {details.memory_rss.status === 'up' ? <CheckCircleIcon color="success" /> : <CancelIcon color="error" />}
+        {detailsPriceme.database.message && (
+          <Box display="flex" alignItems="center" gap={2}>
+            <Typography>Database message:</Typography>
+            <Typography>{detailsPriceme.database.message} </Typography>
+          </Box>
+        )}
+        <Box display="flex" alignItems="center" gap={2}>
+          <Typography>External-network:</Typography>
+          {detailsPriceme['external-network'].status === 'up' ? (
+            <CheckCircleIcon color="success" />
+          ) : (
+            <CancelIcon color="error" />
+          )}
+        </Box>
+        {detailsPriceme['external-network'].message && (
+          <Box display="flex" alignItems="center" gap={2}>
+            <Typography>External-network message:</Typography>
+            <Typography>{detailsPriceme['external-network'].message} </Typography>
+          </Box>
+        )}
       </Box>
-      {details.memory_rss.message && (
-        <Box display="flex" alignItems="center" gap={2}>
-          <Typography>Memory rss message:</Typography>
-          <Typography>{details.memory_rss.message} </Typography>
-        </Box>
-      )}
-    </Box>
+    </>
   );
 };
 

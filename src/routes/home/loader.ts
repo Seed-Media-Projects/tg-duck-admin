@@ -1,6 +1,6 @@
-import { getHealthFX } from '@core/health';
+import { getHealthFX, getHealthPricemeFX } from '@core/health';
 
 export const homeLoader = async () => {
-  const { details } = await getHealthFX();
-  return { details };
+  const [{ details: detailsDuck }, { details: detailsPriceme }] = await Promise.all([getHealthFX(), getHealthPricemeFX()]);
+  return { detailsDuck, detailsPriceme };
 };

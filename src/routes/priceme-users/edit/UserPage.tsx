@@ -1,4 +1,4 @@
-import { UserInfo, getUserDataFX, getUserLvlFromExp, resetUserDataFX } from '@core/users';
+import { UserInfo, getPricemeUserDataFX, resetPricemeUserDataFX } from '@core/priceme-users';
 import { getDiceBearAvatar } from '@core/utils/dicebear';
 import { getInitials } from '@core/utils/get-initials';
 import { Avatar, Box, Button, Link, Typography } from '@mui/material';
@@ -12,7 +12,7 @@ export const Component = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { user } = useLoaderData() as { user: UserInfo | null };
-  const loading = useUnit(resetUserDataFX.pending);
+  const loading = useUnit(resetPricemeUserDataFX.pending);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -26,11 +26,11 @@ export const Component = () => {
         User info
       </Typography>
       <Box my={2} display="flex" gap={2}>
-        <Link href={`/users/${user.id}/edit`}>
+        <Link href={`/priceme/users/${user.id}/edit`}>
           <Button variant="contained">Edit</Button>
         </Link>
         <Button onClick={handleOpen} variant="contained" color="error">
-          Reset
+          Delete
         </Button>
       </Box>
       <Box display="flex" alignItems="center" gap={1} mb={2}>
@@ -38,7 +38,7 @@ export const Component = () => {
           sx={{ width: 30, height: 30, fontSize: '.875rem' }}
           src={
             user.photoUrl
-              ? `${import.meta.env.VITE_SERVER_URL}${user.photoUrl}`
+              ? `${import.meta.env.VITE_SERVER_URL_PRICEME}${user.photoUrl}`
               : getDiceBearAvatar(`${user.firstName}-${user.lastName}`)
           }
         >
@@ -48,46 +48,32 @@ export const Component = () => {
           {user.firstName} {user.lastName}
         </Typography>
       </Box>
-      <Typography gutterBottom>Max referrals: {user.maxReferrals}</Typography>
       <Typography gutterBottom>Language: {user.language}</Typography>
-      <Typography gutterBottom>Lvl: {getUserLvlFromExp(user.userInfo.experience)}</Typography>
-      <Typography gutterBottom>Income per hour: {user.userInfo.incomePerHour}</Typography>
-      <Typography gutterBottom>
-        Energy: {user.userInfo.energy}/{user.userInfo.maxEnergy}
-      </Typography>
-      <Typography gutterBottom>Coins: {user.userInfo.coins}</Typography>
-      <Typography gutterBottom>Coins per tap: {user.userInfo.coinsPerTap}</Typography>
-      <Typography gutterBottom>Bet coins: {user.userInfo.betCoins}</Typography>
-      <Typography gutterBottom>Time spent in seconds: {user.userInfo.timeSpent}</Typography>
-      <Typography gutterBottom>Total taps: {user.userInfo.totalTaps}</Typography>
+      <Typography gutterBottom>Main coins: {user.userInfo.mainCoin}</Typography>
+      <Typography gutterBottom>Friends coins: {user.userInfo.friendsCoin}</Typography>
       <Divider sx={{ my: 2 }} />
       <Typography gutterBottom>Referrals count: {user.referrals.length}</Typography>
       <Divider sx={{ my: 2 }} />
-      <Typography variant="h6" gutterBottom>
-        User crash games
+      <Typography gutterBottom variant="h6">
+        Transactions
       </Typography>
-      <Typography gutterBottom>Total games: {user.userGames.length}</Typography>
-      <Typography gutterBottom>Winning games: {user.userGames.filter(g => g.winner).length}</Typography>
-      <Typography gutterBottom>
-        Last 5 bet+ratio:{' '}
-        {user.userGames
-          .slice(0)
-          .slice(-5)
-          .map(g => `bet -> ${g.bet} and ratio -> ${g.ratio}`)
-          .join(', ')}
-      </Typography>
+      {user.transactions.map(t => (
+        <Typography key={t.id} gutterBottom>
+          {t.type}: {t.amount}
+        </Typography>
+      ))}
       <ActionModal
         loading={loading}
         onClose={handleClose}
         onConfirm={() => {
-          resetUserDataFX(user.id).then(() => {
+          resetPricemeUserDataFX(user.id).then(() => {
             handleClose();
             navigate('.', { replace: true });
           });
         }}
         open={open}
-        title={`Reset user ${user.firstName}`}
-        subtitle="This action will delete all users upgrades, tasks, specials, markets, boosts and achievements. Are you sure?"
+        title={`Delete user ${user.firstName}`}
+        subtitle="This action will delete user. Are you sure?"
       />
     </Box>
   );
@@ -100,6 +86,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     return { user: null };
   }
 
-  const user = await getUserDataFX(Number(params.userId));
+  const user = await getPricemeUserDataFX(Number(params.userId));
   return { user };
 };
