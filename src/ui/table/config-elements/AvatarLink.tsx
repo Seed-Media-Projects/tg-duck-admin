@@ -53,15 +53,20 @@ export const AvatarWithoutImageLink = styled(Link)(({ theme }) => ({
 
 export const AvatarRow = ({ user, link }: RowProps) => {
   const { id, firstName, lastName, photoUrl, username } = user;
+  const url = !photoUrl
+    ? null
+    : photoUrl.includes('ducky')
+      ? `${import.meta.env.VITE_SERVER_URL}${photoUrl}`
+      : `${import.meta.env.VITE_SERVER_URL_PRICEME}${photoUrl}`;
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <AvatarWithoutImageLink href={link(id)}>
         <Avatar
           sx={{ mr: 3, width: 30, height: 30, fontSize: '.875rem' }}
-          src={photoUrl || getDiceBearAvatar(`${firstName}-${lastName}`)}
+          src={url || getDiceBearAvatar(`${firstName}-${lastName}`)}
         >
-          {photoUrl ? null : getInitials(`${firstName} ${lastName}`)}
+          {url ? null : getInitials(`${firstName} ${lastName}`)}
         </Avatar>
       </AvatarWithoutImageLink>
       <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
