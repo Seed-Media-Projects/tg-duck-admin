@@ -12,7 +12,7 @@ export const Component = () => {
       <BaseList
         data={users}
         config={tableUsersConfig}
-        listHeader={<CardHeader title="Users" />}
+        listHeader={<CardHeader title="Ducky users" />}
         loadMore={() => {
           if (users.length >= offset) {
             getUsersListFX(offset);

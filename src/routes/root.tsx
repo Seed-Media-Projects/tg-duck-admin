@@ -133,7 +133,17 @@ export const Component = () => {
                     <ListItemIcon>
                       <TaskIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Задачи" />
+                    <ListItemText primary="Задачи ducky" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+              <Link href="/priceme/tasks" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <TaskIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Задачи priceme" />
                   </ListItemButton>
                 </ListItem>
               </Link>

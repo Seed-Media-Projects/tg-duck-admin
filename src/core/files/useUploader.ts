@@ -7,7 +7,13 @@ import { FileInfo } from './types';
 
 const oneMB = 1048576;
 
-export const useUploader = ({ onFinishUpload }: { onFinishUpload: (f: FileInfo) => void }) => {
+export const useUploader = ({
+  onFinishUpload,
+  from = 'ducky',
+}: {
+  onFinishUpload: (f: FileInfo) => void;
+  from?: 'ducky' | 'priceme';
+}) => {
   const loading = useUnit(uploadFileFX.pending);
   const [progress, setProgress] = useState(0);
 
@@ -30,6 +36,7 @@ export const useUploader = ({ onFinishUpload }: { onFinishUpload: (f: FileInfo) 
           onUploadProgress: p => {
             setProgress(Math.round((p.loaded * 100) / (p.total ?? 0)));
           },
+          from,
         });
         setProgress(0);
         onFinishUpload(data);

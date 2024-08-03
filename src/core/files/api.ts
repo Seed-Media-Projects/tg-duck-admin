@@ -1,21 +1,39 @@
-import { AxiosProgressEvent } from 'axios';
+import { AxiosProgressEvent, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { createEffect } from 'effector';
-import { AXDUCK } from '../data/fetcher';
+import { AXDUCK, AXPRICE } from '../data/fetcher';
 import { FileInfo } from './types';
 
-export const uploadFileFX = createEffect(
-  async ({ file, onUploadProgress }: { file: File; onUploadProgress?: (progressEvent: AxiosProgressEvent) => void }) => {
-    const fileInfo = await fileUploadOnDrop(file, onUploadProgress);
+type ParamsConfig = {
+  file: File;
+  onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
+  from: 'ducky' | 'priceme';
+};
 
-    return fileInfo;
-  },
-);
+export const uploadFileFX = createEffect(async (config: ParamsConfig) => {
+  const fileInfo = await fileUploadOnDrop(config);
 
-const fileUploadOnDrop = async (file: File, onUploadProgress?: (progressEvent: AxiosProgressEvent) => void) => {
+  return fileInfo;
+});
+
+const fileUploadOnDrop = async ({ file, onUploadProgress, from }: ParamsConfig) => {
   const formData = new FormData();
   formData.append('file', file);
 
-  const { data } = await AXDUCK.post<FileInfo>(`/admin/api/filestorage/upload`, formData, {
+  let axTarget:
+    | ((url: string, data?: FormData, config?: AxiosRequestConfig | undefined) => Promise<AxiosResponse<FileInfo>>)
+    | null = null;
+
+  switch (from) {
+    case 'priceme':
+      axTarget = AXPRICE.post<FileInfo>;
+      break;
+
+    default:
+      axTarget = AXDUCK.post<FileInfo>;
+      break;
+  }
+
+  const { data } = await axTarget(`/admin/api/filestorage/upload`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
