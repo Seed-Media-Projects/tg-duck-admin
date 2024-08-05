@@ -20,17 +20,47 @@ const router = createBrowserRouter([
         lazy: () => import('@routes/home'),
       },
       {
-        path: 'priceme/users',
-        lazy: () => import('@routes/priceme-users'),
+        path: 'priceme',
+        children: [
+          {
+            path: 'users',
+            lazy: () => import('@routes/priceme-users'),
+          },
+          {
+            path: 'users/:userId',
+            lazy: () => import('@routes/priceme-users/edit/UserPage'),
+          },
+          {
+            path: 'users/:userId/edit',
+            lazy: () => import('@routes/priceme-users/edit/UserEditPage'),
+          },
+          {
+            path: 'tasks',
+            lazy: () => import('@routes/priceme-tasks'),
+          },
+          {
+            path: 'tasks/:taskId/edit',
+            lazy: () => import('@routes/priceme-tasks/edit'),
+          },
+          {
+            path: 'tasks/create',
+            lazy: () => import('@routes/priceme-tasks/create'),
+          },
+          {
+            path: 'boosts',
+            lazy: () => import('@routes/priceme-boosts'),
+          },
+          {
+            path: 'boosts/:boostId/edit',
+            lazy: () => import('@routes/priceme-boosts/edit'),
+          },
+          {
+            path: 'boosts/create',
+            lazy: () => import('@routes/priceme-boosts/create'),
+          },
+        ],
       },
-      {
-        path: 'priceme/users/:userId',
-        lazy: () => import('@routes/priceme-users/edit/UserPage'),
-      },
-      {
-        path: 'priceme/users/:userId/edit',
-        lazy: () => import('@routes/priceme-users/edit/UserEditPage'),
-      },
+
       {
         path: 'users',
         lazy: () => import('@routes/users'),
@@ -79,18 +109,7 @@ const router = createBrowserRouter([
         path: 'tasks/create',
         lazy: () => import('@routes/tasks/create'),
       },
-      {
-        path: 'priceme/tasks',
-        lazy: () => import('@routes/priceme-tasks'),
-      },
-      {
-        path: 'priceme/tasks/:taskId/edit',
-        lazy: () => import('@routes/priceme-tasks/edit'),
-      },
-      {
-        path: 'priceme/tasks/create',
-        lazy: () => import('@routes/priceme-tasks/create'),
-      },
+
       {
         path: 'specials',
         lazy: () => import('@routes/specials'),

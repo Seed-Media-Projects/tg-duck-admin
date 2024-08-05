@@ -32,7 +32,7 @@ const CreateMarketLvlPage = () => {
           name="lvl"
           type="number"
           autoFocus
-          defaultValue={marketLvls[marketLvls.length - 1].lvl + 1}
+          defaultValue={(marketLvls[marketLvls.length - 1]?.lvl ?? 0) + 1}
         />
         <TextField margin="normal" required fullWidth label="Price" name="price" type="number" />
         <TextField margin="normal" required fullWidth label="Income per hour" name="incomePerHour" type="number" />

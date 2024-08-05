@@ -32,7 +32,7 @@ const CreateUpgradeLvlPage = () => {
           name="lvl"
           type="number"
           autoFocus
-          defaultValue={upgradeLvls[upgradeLvls.length - 1].lvl + 1}
+          defaultValue={(upgradeLvls[upgradeLvls.length - 1]?.lvl ?? 0) + 1}
         />
         <TextField margin="normal" required fullWidth label="Price" name="price" type="number" />
         <TextField margin="normal" required fullWidth label="Increase amount" name="increaseAmount" type="number" />

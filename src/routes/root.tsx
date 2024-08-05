@@ -187,7 +187,17 @@ export const Component = () => {
                     <ListItemIcon>
                       <UpgradeIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Boost" />
+                    <ListItemText primary="Ducky boost" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+              <Link href="/priceme/boosts" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <UpgradeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Priceme boost" />
                   </ListItemButton>
                 </ListItem>
               </Link>

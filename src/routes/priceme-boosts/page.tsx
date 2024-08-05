@@ -1,4 +1,4 @@
-import { BoostItem } from '@core/boosts';
+import { PricemeBoostItem } from '@core/priceme-boosts';
 import { Button, CardHeader, Grid, Link } from '@mui/material';
 import { BaseList } from '@ui/table/BaseTable';
 import { useLoaderData } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { tableBoostsConfig } from './TableConfig';
 import { boostsLoader } from './loader';
 
 const BoostsPage = () => {
-  const { boosts } = useLoaderData() as { boosts: BoostItem[] };
+  const { boosts } = useLoaderData() as { boosts: PricemeBoostItem[] };
 
   return (
     <Grid item xs={12}>
@@ -15,9 +15,9 @@ const BoostsPage = () => {
         config={tableBoostsConfig}
         listHeader={
           <CardHeader
-            title="Ducky boosts"
+            title="Priceme boosts"
             action={
-              <Link href="/boosts/create">
+              <Link href="/priceme/boosts/create">
                 <Button variant="contained">create</Button>
               </Link>
             }
