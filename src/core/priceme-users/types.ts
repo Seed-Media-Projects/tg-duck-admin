@@ -33,6 +33,8 @@ export enum UserTransactionType {
   FriendReward = 'friend_reward',
   FriendOfFriendReward = 'friend_of_friend_reward',
   Conversion = 'conversion',
+  CompletedTask = 'completed_task',
+  BoostIncomeClaim = 'boost_income_claim',
 }
 
 export type PricemeUserTransaction = {
