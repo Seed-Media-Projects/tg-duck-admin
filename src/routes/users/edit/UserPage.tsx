@@ -66,16 +66,20 @@ export const Component = () => {
       <Typography variant="h6" gutterBottom>
         User crash games
       </Typography>
-      <Typography gutterBottom>Total games: {user.userGames.length}</Typography>
-      <Typography gutterBottom>Winning games: {user.userGames.filter(g => g.winner).length}</Typography>
-      <Typography gutterBottom>
-        Last 5 bet+ratio:{' '}
-        {user.userGames
-          .slice(0)
-          .slice(-5)
-          .map(g => `bet -> ${g.bet} and ratio -> ${g.ratio}`)
-          .join(', ')}
-      </Typography>
+      {user.userGames ? (
+        <>
+          <Typography gutterBottom>Total games: {user.userGames.length}</Typography>
+          <Typography gutterBottom>Winning games: {user.userGames.filter(g => g.winner).length}</Typography>
+          <Typography gutterBottom>
+            Last 5 bet+ratio:{' '}
+            {user.userGames
+              .slice(0)
+              .slice(-5)
+              .map(g => `bet -> ${g.bet} and ratio -> ${g.ratio}`)
+              .join(', ')}
+          </Typography>
+        </>
+      ) : null}
       <ActionModal
         loading={loading}
         onClose={handleClose}

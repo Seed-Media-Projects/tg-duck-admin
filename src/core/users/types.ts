@@ -102,7 +102,7 @@ export type UserInfo = BaseUserInfo & {
   userSpecials: UserSpecial[];
   userTasks: UserTask[];
   userAchievements: UserAchievement[];
-  userGames: UserGame[];
+  userGames?: UserGame[];
 };
 
 export type UpdateUserData = {
