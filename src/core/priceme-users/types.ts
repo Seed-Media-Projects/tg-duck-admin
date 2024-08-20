@@ -3,6 +3,15 @@ export type UserListItem = BaseUserInfo & {
   isPremium: boolean;
   language: 'ru' | 'en';
   userInfo: PricemeUserInfo;
+  transactionsGroups: {
+    sum: string;
+    type: UserTransactionType;
+  }[];
+  referralsCount: [
+    {
+      count: string;
+    },
+  ];
 };
 
 export type BaseUserInfo = {
