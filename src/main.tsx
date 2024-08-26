@@ -62,6 +62,11 @@ const router = createBrowserRouter([
       },
 
       {
+        path: 'dashboard',
+        lazy: () => import('@routes/dashboard'),
+      },
+
+      {
         path: 'users',
         lazy: () => import('@routes/users'),
       },

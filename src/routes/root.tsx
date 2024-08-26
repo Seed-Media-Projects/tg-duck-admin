@@ -1,4 +1,5 @@
 import { LS, LSKeys } from '@core/local-store';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 import HomeIcon from '@mui/icons-material/Home';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -209,6 +210,16 @@ export const Component = () => {
                       <VideogameAssetIcon />
                     </ListItemIcon>
                     <ListItemText primary="Crash game" />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+              <Link href="/dashboard" sx={{ textDecoration: 'none', color: 'MenuText' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <AnalyticsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
                   </ListItemButton>
                 </ListItem>
               </Link>
