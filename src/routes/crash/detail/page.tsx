@@ -38,9 +38,10 @@ const GameDetailPage = () => {
           </Box>
           <Typography gutterBottom>Bet: {p.bet}</Typography>
           <Typography gutterBottom>Ratio: {p.ratio}</Typography>
-          <Typography gutterBottom>Bet result: {p.winner ? round(p.bet * p.ratio) : `-${p.bet}`}</Typography>
+          <Typography gutterBottom>Bet result: {round(p.bet * p.ratio) - p.bet}</Typography>
           <Typography gutterBottom>Joined: {dayjs(p.joined).format('DD MMM YYYY HH:mm:ss')}</Typography>
           <Typography gutterBottom>Stopped: {p.stopped ? dayjs(p.stopped).format('DD MMM YYYY HH:mm:ss') : '-'}</Typography>
+          <Typography gutterBottom>Stopped by: {p.stoppedBy ?? '-'}</Typography>
         </Box>
       ))}
     </Box>

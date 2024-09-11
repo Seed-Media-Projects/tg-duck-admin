@@ -13,6 +13,7 @@ export type CrashGamePlayer = {
   ratio: number;
   joined: string;
   stopped: string | null;
+  stoppedBy: 'system' | 'player' | null;
 };
 
 export type CrashGameInfo = CrashGameItem & {
