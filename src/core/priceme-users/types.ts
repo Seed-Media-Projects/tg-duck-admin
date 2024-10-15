@@ -60,7 +60,7 @@ export type UserInfo = BaseUserInfo & {
   isPremium: boolean;
   language: 'ru' | 'en';
   userInfo: PricemeUserInfo;
-  referrals: UserReferral[];
+  referrals?: UserReferral[];
   userRef: UserReferral | null;
   transactions: PricemeUserTransaction[];
   transaction: PricemeUserTransaction | null;

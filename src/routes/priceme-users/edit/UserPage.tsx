@@ -52,7 +52,7 @@ export const Component = () => {
       <Typography gutterBottom>Main coins: {user.userInfo.mainCoin}</Typography>
       <Typography gutterBottom>Friends coins: {user.userInfo.friendsCoin}</Typography>
       <Divider sx={{ my: 2 }} />
-      <Typography gutterBottom>Referrals count: {user.referrals.length}</Typography>
+      {/* <Typography gutterBottom>Referrals count: {user.referrals.length}</Typography> */}
       <Divider sx={{ my: 2 }} />
       <Typography gutterBottom variant="h6">
         Transactions
