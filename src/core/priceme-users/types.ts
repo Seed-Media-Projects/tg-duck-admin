@@ -60,10 +60,16 @@ export type UserInfo = BaseUserInfo & {
   isPremium: boolean;
   language: 'ru' | 'en';
   userInfo: PricemeUserInfo;
-  referrals?: UserReferral[];
   userRef: UserReferral | null;
-  transactions: PricemeUserTransaction[];
-  transaction: PricemeUserTransaction | null;
+  referralsCount: [
+    {
+      count: number;
+    },
+  ];
+  transactionsGroups: {
+    sum: string;
+    type: UserTransactionType;
+  }[];
 };
 
 export type UpdateUserData = {
